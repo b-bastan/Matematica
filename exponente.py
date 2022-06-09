@@ -1,7 +1,7 @@
-from cgi import print_arguments
 import math, re
 
 # ACLARAR QUE SOLO EXISTE X COMO INCÓGNITA
+# NO PUEDEN INGRESARSE EXPONENTES MAYORES A 9999
 # Potencia = **; raiz = //
 # Tipos de potencia
 # f(x) = x**5 + (2**2)**3
@@ -10,52 +10,40 @@ import math, re
 def exponente(funcion):
     pass
 
-# NO PUEDEN INGRESARSE EXPONENTES MAYORES A 9999
+
 
 while True:
+    x = "x"
     numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     list_exponente = []
     funcion = input("Ingrese una función: ")
     inicio = int(funcion.find("**"))
     while inicio != -1:
-        print("Inicio: ", inicio)
         num = 2
-        print("Número inicio: ", num)
         for i in funcion[inicio+3: ]:
             num += 1
-            if i not in str(numeros) or i == " ":
-                print("I que no esta entre los numeros: ", i)
+            if i not in str(numeros):
                 break
-        print("Número fin: ", num)
         if num == 2:
-            num += 4
-        print("Numero: ", num)
+            num = 6
         exponente = funcion[inicio+2: inicio+num]
-        print(exponente)
-        list_exponente.append(exponente)
+        list_exponente.append(int(exponente))
         funcion = funcion[inicio+num: ]
         inicio = int(funcion.find("**"))
-    print(list_exponente)
     exp_alto = max(list_exponente)
     print("El exponente más alto es: ", exp_alto)
-    if exp_alto == 2:
-        print("Es cuadrática") 
 
+    if exp_alto == 0:
+        print("No es una función :p") 
+    elif exp_alto == 1:
+        print("Es un monomio")
+        print("Es una función lineal")
+    elif exp_alto >= 2:
+        print("Es un polinomio")
+        if exp_alto == 2:
+            print("Es una función cuadrática")
+        elif exp_alto == 3:
+            print("Es una función cúbica")
+        elif exp_alto >= 4:
+            print("Es una función de " + str(exp_alto) + " grado")
     
-    
-
-
-
-new_funcion = funcion[inicio+3: ]
-
-print("Nueva funcion: ", new_funcion)
-
-new_inicio = int(new_funcion.find("**"))
-
-res2 = print("Exponente: ", new_funcion[new_inicio: new_inicio+3])
-
-res2 = new_funcion[new_inicio: new_inicio+3]
-
-exponente = re.findall('[0-9]+', res2)
-
-print("Solo exponente: ", exponente)
