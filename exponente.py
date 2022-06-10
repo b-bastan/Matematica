@@ -1,18 +1,27 @@
-import math, re
+import os, re
 
 # ACLARAR QUE SOLO EXISTE X COMO INCÓGNITA
 # NO PUEDEN INGRESARSE EXPONENTES MAYORES A 9999
 # Potencia = **; raiz = //
 # f(x) = x**5 + (2**2)**3
 # f(x) = x**2569 + **8 - **9999
+# f(x) = 5**6 x  * 9
 
 
 while True:
-    x = "x"
+    os.system("cls")
     numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     list_exponente = []
 
-    funcion = input("Ingrese una función: ").strip()
+    while True:
+        funcion = str(input("Ingrese una función: "))
+        try:
+            int(funcion.index("x"))
+            break
+        except ValueError:
+            print("Por favor, ingrese correctamente la incógnita")
+
+    funcion = funcion.replace(" ", "")
     inicio = int(funcion.find("x**"))
 
     while inicio != -1:
@@ -24,7 +33,6 @@ while True:
         if num == 3:
             num = 4
         exponente = int(funcion[inicio+3: inicio+num])
-
         list_exponente.append(exponente)
         funcion = funcion[inicio+num: ]
         inicio = int(funcion.find("x**"))
@@ -46,4 +54,6 @@ while True:
             print("Es una función cúbica")
         elif exp_alto >= 4:
             print("Es una función de " + str(exp_alto) + " grado")
+
+    input("Presione ENTER para continuar...")
     
