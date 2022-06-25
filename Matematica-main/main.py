@@ -6,6 +6,8 @@ import os
 # VER CÓMO COLOCAR EL ÍNDICE DE LA RAIZ O COMO SE LLAME (AUNQUE NO AFECTE EN EL PROGRAMA)
 # VER CÓMO HACER CUANDO EN EL DIVISOR EL EXPONENTE ES UNA X, TIPO 5/6**X
 # ¿UNA FUNCIÓN PUEDE SER RACIONAL E IRRACIONAL A LA VEZ?
+# FUNCIÓN ALGEBRÁICA
+# https://es.wikipedia.org/wiki/Funci%C3%B3n_algebraica
 
 #################################-- VARIABLES GLOBALES --#################################
 
