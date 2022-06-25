@@ -2,18 +2,25 @@ import os
 
 # NO PUEDEN INGRESARSE EXPONENTES MAYORES A 9999
 # Potencia = **; raiz = //
+# SOLUCIONAR QUE NO PUEDAN INGRESAR UNA OPCION EN BLANCO
+# VER CÓMO COLOCAR EL ÍNDICE DE LA RAIZ O COMO SE LLAME (AUNQUE NO AFECTE EN EL PROGRAMA)
+# VER CÓMO HACER CUANDO EN EL DIVISOR EL EXPONENTE ES UNA X, TIPO 5/6**X
+# ¿UNA FUNCIÓN PUEDE SER RACIONAL E IRRACIONAL A LA VEZ?
 
 #################################-- VARIABLES GLOBALES --#################################
 
-funcion = False
+value = False
+numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 #################################-- FUNCIONES --#################################
 
+
 def ingresarFuncion():
-    global funcion
-    if funcion:
+    global value, funcion
+    if value:
         return funcion
     else:
+        value = True
         while True:
             funcion = str(input("Ingrese una función: f(x) = "))
             try:
@@ -24,17 +31,15 @@ def ingresarFuncion():
                 print("Por favor, ingrese correctamente la incógnita")
         return funcion
 
-def findX():
-    funcion = ingresarFuncion()
-    inicio = int(funcion.find("x"))
-    return inicio
 
 def exponente():
-    numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    global value
     list_exponente = []
-    funcion = ingresarFuncion() + "**"
+    funcion = ingresarFuncion()
+    inicio = int(funcion.find("x**"))
+    raiz()
+    fraccion()
 
-    inicio = findX()
     while inicio != -1:
         num = 2
         for i in funcion[inicio+3: ]:
@@ -51,27 +56,45 @@ def exponente():
         exp_alto = max(list_exponente)
     except ValueError:
         exp_alto = 0
-
+    
+    value = False
     return exp_alto
 
 
 def raiz():
     funcion = ingresarFuncion()
-    
     find_raiz = int(funcion.find("raiz("))
     
-    if find_raiz != 1:
-        print("No hay raiz")
+    if find_raiz != -1:
+        for i in funcion[find_raiz+5: ]:
+            if i != ")":
+                if i == "x":
+                    return print("Es una funcion irracional")
+
+
+def fraccion():
+    funcion = ingresarFuncion()
+    find_fraccion = int(funcion.find("/("))
+
+    if find_fraccion != -1:
+        for i in funcion[find_fraccion+2: ]:
+            if i != ")":
+                if i == "x":
+                    return print("Es una función racional")
     else:
-        while find_raiz != ")":
-            x = findX()
+        find_fraccion = int(funcion.find("/"))
+        if find_fraccion != -1:
+            for i in funcion[find_fraccion+1: ]:
+                if i not in str(numeros):
+                    if i == "x":
+                        return print("Es una función racional")
+                    else:
+                        break
 
-        
-
-    
 
 
 #################################-- MAIN --#################################
+
 
 while True:
     os.system("cls")
@@ -98,7 +121,7 @@ Menú de opciones
     if opcion == 1:
         print("Tipos de funciones")
     elif opcion == 2:
-        exp_alto = raiz()
+        exp_alto = exponente()
         if exp_alto == 0:
             print("Es un monomio")
             print("Es una función lineal")
