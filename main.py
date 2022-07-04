@@ -2,6 +2,7 @@ import os
 
 # NO PUEDEN INGRESARSE EXPONENTES MAYORES A 9999
 # https://es.wikipedia.org/wiki/Funci%C3%B3n_algebraica
+# EVALUAR FUNCION EN UN PUNTO
 
 #################################-- VARIABLES GLOBALES --#################################
 
@@ -130,11 +131,9 @@ Menú de opciones
     if opcion == 1:
         print("Tipos de funciones")
     elif opcion == 2:
-        print("Es una función algebráica")
         if raiz():
             print("Es una función irracional")
         else:
-            print("Es una potenciación")
             if fraccion():
                 print("Es una función racional")
             else:
