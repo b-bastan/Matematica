@@ -33,6 +33,8 @@ def ingresarFuncion():
 
 
 def limite():
+    global value
+    value = False
     funcion = ingresarFuncion() # This calls the function ingresarFuncion() for returning the function, that will be stored in the variable funcion
 
     punto = int(input("Ingrese el punto en el que se analizará el limite de la funcion: ")) # Here we select the dot where we want to analyze the limits of the function
@@ -41,8 +43,6 @@ def limite():
         if funcion[i] == "r":
             if funcion[i+1] == "a" and funcion[i+2] == "i" and funcion[i+3] == "z": # If the next four characters say raiz, then we will replace them to sqrt, a simplification of square root
                 funcion = funcion[:i] + "sqrt" + funcion[i+4:] # Here we replace the text
-        elif funcion[i] == "0" or funcion[i] == "1" or funcion[i] == "2" or funcion[i] == "3" or funcion[i] == "4" or funcion[i] == "5" or funcion[i] == "6" or funcion[i] == "7" or funcion[i] == "8" or funcion[i] == "9" and funcion[i+1] == "x": # This will trigger the code below when there's a number and then x
-            funcion = funcion[:i+1] + "*" + funcion[i+1:] # We add a multiplication symbol between the number and x
 
     print("Limite desde izquierda: ",limit(funcion, x, punto, '-')) # This calculates the limit from the left
     print("Limite desde derecha: ", limit(funcion, x, punto)) # And this from the right
@@ -57,7 +57,7 @@ def exponente():
     inicio = int(funcion.find("x**")) # It searchs if x** exists, in case there's none, it returns -1
     fraccion()
 
-    # While inicio is different of -1 (When it found x**), it will excecute this loop
+    # While inicio is different of -1 (When it 43343found x**), it will excecute this loop
     while inicio != -1:
         num = 2 # Auxiliar variable
         for i in funcion[inicio+3: ]: # Loop that excecutes from inicio+3 since x** has 3 characters, and starts to search an x
